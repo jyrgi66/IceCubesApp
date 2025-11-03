@@ -31904,6 +31904,9 @@
         }
       }
     },
+    "Full timeline fetch" : {
+
+    },
     "Home Timeline" : {
       "localizations" : {
         "de" : {
@@ -56717,6 +56720,7 @@
       }
     },
     "settings.section.other.footer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "be" : {
           "stringUnit" : {

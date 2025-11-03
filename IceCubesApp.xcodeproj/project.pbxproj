@@ -708,7 +708,7 @@
 				"CODE_SIGN_IDENTITY[sdk=xros*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3066;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 2393548JF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IceCubesNotifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = IceCubesNotifications;
@@ -782,7 +782,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3066;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 2393548JF4;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IceCubesAppWidgetsExtension/Info.plist;
@@ -852,7 +852,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3066;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 2393548JF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IceCubesShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ice Cubes";
@@ -1058,7 +1058,7 @@
 				CURRENT_PROJECT_VERSION = 3066;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"IceCubesApp/Resources\"";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 2393548JF4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1189,7 +1189,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3066;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 2393548JF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IceCubesActionExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Open in Ice Cube";
