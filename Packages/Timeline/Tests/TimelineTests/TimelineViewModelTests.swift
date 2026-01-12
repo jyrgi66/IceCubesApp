@@ -106,4 +106,65 @@ struct Tests {
     #expect(count == 1)
     #expect(statuses.first?.content.asRawText == "test")
   }
+
+  @Test
+  func autoFetchesWhenFilteredStatusesAreEmpty() async throws {
+    let contentFilter = TimelineContentFilter.shared
+    contentFilter.showBoosts = true
+    contentFilter.showReplies = true
+    contentFilter.showThreads = true
+    contentFilter.showQuotePosts = true
+
+    let hiddenFirstPage = (0..<50).map { makeStatus(id: "hidden-first-\($0)", hidden: true) }
+    let hiddenSecondPage = (0..<40).map { makeStatus(id: "hidden-next-\($0)", hidden: true) }
+    let visibleThirdPage = [makeStatus(id: "visible-0", hidden: false)]
+
+    let fetcher = MockTimelineStatusFetcher(
+      firstPage: hiddenFirstPage,
+      nextPages: [hiddenSecondPage, visibleThirdPage])
+
+    let subject = TimelineViewModel(statusFetcher: fetcher)
+    subject.client = MastodonClient(server: "localhost")
+    await subject.reset()
+
+    await subject.fetchNewestStatuses(pullToRefresh: false)
+
+    let filteredItems = await subject.datasource.getFilteredItems()
+    #expect(!filteredItems.isEmpty)
+    #expect(await fetcher.nextPageCallCount() >= 2)
+  }
+
+  @Test
+  func hideQuotePostsFiltersLegacyAndNativeQuotes() async throws {
+    let normalStatus = makeStatus(id: "normal", hidden: false)
+    let legacyQuoteStatus = makeStatus(
+      id: "legacy-quote",
+      content: try makeHTMLStringWithStatusLink(),
+      quote: nil
+    )
+    let nativeQuoteStatus = makeStatus(
+      id: "native-quote",
+      content: Status.placeholder().content,
+      quote: try makeQuote(quotedStatusId: "123")
+    )
+
+    let datasource = TimelineDatasource()
+    await datasource.set([normalStatus, legacyQuoteStatus, nativeQuoteStatus])
+
+    let snapshot = TimelineContentFilter.Snapshot(
+      showBoosts: true,
+      showReplies: true,
+      showThreads: true,
+      showQuotePosts: false,
+      hidePostsWithMedia: false
+    )
+    let filtered = await datasource.getFiltered(using: snapshot)
+    #expect(filtered.map(\.id) == ["normal"])
+  }
+}
+
+private func makeHTMLStringWithStatusLink() throws -> HTMLString {
+  let html =
+    "\"<p>Quoted <a href=\\\"https://example.com/@bob/123\\\">link</a></p>\""
+  return try JSONDecoder().decode(HTMLString.self, from: Data(html.utf8))
 }
